@@ -150,7 +150,6 @@ export default function SetupMonthlyBudget() {
             <p className="text-label-sm font-label-sm text-on-surface-variant italic">"A budget is telling your money where to go instead of wondering where it went."</p>
           </div>
         </div>
-        </div>
       </div>
     </div>
     
