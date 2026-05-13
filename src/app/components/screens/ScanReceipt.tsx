@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { mockProcessReceipt } from '@/app/actions';
+import { useToast } from '@/app/components/Toast';
 
 export default function ScanReceipt() {
   const router = useRouter();
+  const { showToast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
   const [processState, setProcessState] = useState<'idle' | 'uploading' | 'ocr' | 'matching'>('idle');
 
@@ -27,10 +29,10 @@ export default function ScanReceipt() {
     const res = await mockProcessReceipt('Costco', 85.50, mockItems);
     
     if (res.success) {
-      alert(`Receipt processed! Added $85.50 to budget and stocked items.`);
-      router.push('/pantry');
+      showToast('Receipt processed! Added $85.50 to budget and stocked items.');
+      router.push('/inventory');
     } else {
-      alert(`Failed to process receipt: ${res.error}`);
+      showToast(`Failed to process receipt: ${res.error}`, 'error');
       setIsProcessing(false);
     }
   };

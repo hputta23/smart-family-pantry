@@ -4,12 +4,42 @@ import { supabase } from '@/lib/supabase';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 
-// Utility for managing session
+// ===========================================================
+// Input Validation Helpers
+// ===========================================================
+
+function validateEmail(email: string): boolean {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email) && email.length <= 254;
+}
+
+function sanitizeString(input: string, maxLength = 200): string {
+  return input.trim().slice(0, maxLength);
+}
+
+function validateStringRequired(input: string, fieldName: string, minLen = 1, maxLen = 200): string | null {
+  const val = input?.trim();
+  if (!val || val.length < minLen) return `${fieldName} is required (min ${minLen} chars)`;
+  if (val.length > maxLen) return `${fieldName} is too long (max ${maxLen} chars)`;
+  return null;
+}
+
+function validateNumber(val: number, min: number, max: number, fieldName: string): string | null {
+  if (typeof val !== 'number' || isNaN(val)) return `${fieldName} must be a number`;
+  if (val < min || val > max) return `${fieldName} must be between ${min} and ${max}`;
+  return null;
+}
+
+// ===========================================================
+// Session Management
+// ===========================================================
+
 async function setSession(familyId: string) {
   const cookieStore = await cookies();
   cookieStore.set('family_id', familyId, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
     maxAge: 60 * 60 * 24 * 30, // 30 days
     path: '/',
   });
@@ -23,14 +53,24 @@ export async function getSession() {
 export async function logout() {
   const cookieStore = await cookies();
   cookieStore.delete('family_id');
+  return { success: true };
 }
 
+// ===========================================================
+// Authentication
+// ===========================================================
+
 export async function loginFamily(email: string, password: string) {
+  // Validate inputs
+  if (!validateEmail(email)) return { success: false, error: 'Please enter a valid email address' };
+  const pwErr = validateStringRequired(password, 'Password', 6, 128);
+  if (pwErr) return { success: false, error: pwErr };
+
   try {
     const { data: authRecord, error } = await supabase
       .from('family_auth')
       .select('family_id, password_hash')
-      .eq('email', email)
+      .eq('email', sanitizeString(email, 254).toLowerCase())
       .single();
 
     if (error || !authRecord) {
@@ -50,37 +90,64 @@ export async function loginFamily(email: string, password: string) {
   }
 }
 
+// ===========================================================
+// Family Setup
+// ===========================================================
+
 export async function setupFamily(formData: {
   familyName: string;
   email: string;
   password: string;
   budget: number;
-  members: any[];
+  members: { ageRange: string; sex: string }[];
   stores: string[];
 }) {
+  // Validate all inputs
+  const nameErr = validateStringRequired(formData.familyName, 'Family name', 2, 100);
+  if (nameErr) return { success: false, error: nameErr };
+
+  if (!validateEmail(formData.email)) return { success: false, error: 'Please enter a valid email address' };
+
+  const pwErr = validateStringRequired(formData.password, 'Password', 6, 128);
+  if (pwErr) return { success: false, error: pwErr };
+
+  const budgetErr = validateNumber(formData.budget, 50, 10000, 'Budget');
+  if (budgetErr) return { success: false, error: budgetErr };
+
   try {
-    // 1. Create Family
+    // 1. Check if email already exists
+    const { data: existingAuth } = await supabase
+      .from('family_auth')
+      .select('family_id')
+      .eq('email', sanitizeString(formData.email, 254).toLowerCase())
+      .single();
+
+    if (existingAuth) {
+      return { success: false, error: 'An account with this email already exists. Please log in instead.' };
+    }
+
+    // 2. Create Family
     const { data: family, error: familyError } = await supabase
       .from('families')
-      .insert({ family_name: formData.familyName })
+      .insert({ family_name: sanitizeString(formData.familyName, 100) })
       .select()
       .single();
 
     if (familyError || !family) throw new Error('Failed to create family');
 
-    // 2. Create Auth
-    const passwordHash = await bcrypt.hash(formData.password, 10);
+    // 3. Create Auth
+    const passwordHash = await bcrypt.hash(formData.password, 12);
     const { error: authError } = await supabase
       .from('family_auth')
       .insert({
         family_id: family.id,
-        email: formData.email,
+        email: sanitizeString(formData.email, 254).toLowerCase(),
         password_hash: passwordHash,
       });
 
     if (authError) throw new Error('Failed to create auth credentials');
 
-    // 3. Create Budget
+    // 4. Create Budget
     const { error: budgetError } = await supabase
       .from('budgets')
       .insert({
@@ -90,7 +157,17 @@ export async function setupFamily(formData: {
 
     if (budgetError) throw new Error('Failed to save budget');
 
-    // Set session immediately
+    // 5. Create member profiles
+    if (formData.members && formData.members.length > 0) {
+      const memberRows = formData.members.slice(0, 20).map((m, i) => ({
+        family_id: family.id,
+        name: `Member ${i + 1}`,
+        type: m.ageRange || 'Adult',
+      }));
+      await supabase.from('profiles').insert(memberRows);
+    }
+
+    // 6. Set session
     await setSession(family.id);
 
     return { success: true };
@@ -99,6 +176,10 @@ export async function setupFamily(formData: {
     return { success: false, error: error.message };
   }
 }
+
+// ===========================================================
+// Inventory Actions
+// ===========================================================
 
 export async function getInventory() {
   const familyId = await getSession();
@@ -121,40 +202,40 @@ export async function getInventory() {
   }
 }
 
-// ---------------------------------------------------------
-// Inventory Actions
-// ---------------------------------------------------------
-
 export async function addInventoryItem(canonicalName: string, category: string, quantity: number, unit: string) {
   const familyId = await getSession();
   if (!familyId) return { success: false, error: 'Not authenticated' };
 
+  // Validate
+  const nameErr = validateStringRequired(canonicalName, 'Item name', 1, 200);
+  if (nameErr) return { success: false, error: nameErr };
+  const qtyErr = validateNumber(quantity, 0.01, 99999, 'Quantity');
+  if (qtyErr) return { success: false, error: qtyErr };
+
   try {
-    // 1. Check if product exists, if not create it
     let { data: product } = await supabase
       .from('products')
       .select('id')
-      .eq('canonical_name', canonicalName)
+      .eq('canonical_name', sanitizeString(canonicalName))
       .single();
 
     if (!product) {
       const { data: newProduct, error: productError } = await supabase
         .from('products')
-        .insert({ canonical_name: canonicalName, category })
+        .insert({ canonical_name: sanitizeString(canonicalName), category: sanitizeString(category, 100) })
         .select('id')
         .single();
       if (productError) throw productError;
       product = newProduct;
     }
 
-    // 2. Add to pantry
     const { error: insertError } = await supabase
       .from('pantry_inventory')
       .insert({
         family_id: familyId,
         product_id: product.id,
         quantity,
-        unit
+        unit: sanitizeString(unit, 50)
       });
 
     if (insertError) throw insertError;
@@ -189,18 +270,15 @@ export async function consumeInventoryItem(inventoryId: string, productId: strin
   if (!familyId) return { success: false, error: 'Not authenticated' };
 
   try {
-    // 1. Log consumption event
     await supabase.from('consumption_events').insert({
       family_id: familyId,
       product_id: productId,
       amount_used: amount
     });
 
-    // 2. Fetch current quantity
     const { data: inv } = await supabase.from('pantry_inventory').select('quantity').eq('id', inventoryId).single();
     if (!inv) throw new Error('Item not found');
 
-    // 3. Update quantity
     const newQty = Math.max(0, inv.quantity - amount);
     await updateInventoryQuantity(inventoryId, newQty);
 
@@ -211,9 +289,9 @@ export async function consumeInventoryItem(inventoryId: string, productId: strin
   }
 }
 
-// ---------------------------------------------------------
+// ===========================================================
 // Shopping List Actions
-// ---------------------------------------------------------
+// ===========================================================
 
 export async function getShoppingList() {
   const familyId = await getSession();
@@ -238,11 +316,14 @@ export async function addListItem(itemName: string, storeName: string) {
   const familyId = await getSession();
   if (!familyId) return { success: false, error: 'Not authenticated' };
 
+  const nameErr = validateStringRequired(itemName, 'Item name', 1, 200);
+  if (nameErr) return { success: false, error: nameErr };
+
   try {
     const { error } = await supabase.from('list_items').insert({
       family_id: familyId,
-      custom_name: itemName,
-      store_name: storeName
+      custom_name: sanitizeString(itemName),
+      store_name: sanitizeString(storeName, 100)
     });
 
     if (error) throw error;
@@ -291,9 +372,9 @@ export async function updateListItemQuantity(itemId: string, quantity: number) {
   }
 }
 
-// ---------------------------------------------------------
+// ===========================================================
 // Profile Actions
-// ---------------------------------------------------------
+// ===========================================================
 
 export async function getFamilyProfiles() {
   const familyId = await getSession();
@@ -317,11 +398,14 @@ export async function addProfile(name: string, type: string) {
   const familyId = await getSession();
   if (!familyId) return { success: false, error: 'Not authenticated' };
 
+  const nameErr = validateStringRequired(name, 'Name', 1, 100);
+  if (nameErr) return { success: false, error: nameErr };
+
   try {
     const { error } = await supabase.from('profiles').insert({
       family_id: familyId,
-      name,
-      type
+      name: sanitizeString(name, 100),
+      type: sanitizeString(type, 50)
     });
 
     if (error) throw error;
@@ -332,9 +416,9 @@ export async function addProfile(name: string, type: string) {
   }
 }
 
-// ---------------------------------------------------------
-// Budget & Mock Receipt Actions
-// ---------------------------------------------------------
+// ===========================================================
+// Budget & Receipt Actions
+// ===========================================================
 
 export async function getBudgetOverview() {
   const familyId = await getSession();
@@ -352,7 +436,6 @@ export async function getBudgetOverview() {
       .select('total_amount, date')
       .eq('family_id', familyId);
 
-    // Sum receipts for the current month
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
     const spent = receipts
@@ -362,12 +445,12 @@ export async function getBudgetOverview() {
       })
       .reduce((sum, r) => sum + r.total_amount, 0) || 0;
 
-    return { 
-      success: true, 
+    return {
+      success: true,
       data: {
         limit: budget?.monthly_limit || 0,
         spent
-      } 
+      }
     };
   } catch (error: any) {
     console.error('Fetch budget error:', error);
@@ -379,13 +462,18 @@ export async function mockProcessReceipt(storeName: string, totalAmount: number,
   const familyId = await getSession();
   if (!familyId) return { success: false, error: 'Not authenticated' };
 
+  // Validate
+  const storeErr = validateStringRequired(storeName, 'Store name', 1, 100);
+  if (storeErr) return { success: false, error: storeErr };
+  const amtErr = validateNumber(totalAmount, 0.01, 99999, 'Total amount');
+  if (amtErr) return { success: false, error: amtErr };
+
   try {
-    // 1. Create Receipt
     const { data: receipt, error: receiptError } = await supabase
       .from('receipts')
       .insert({
         family_id: familyId,
-        store_name: storeName,
+        store_name: sanitizeString(storeName, 100),
         total_amount: totalAmount,
         image_url: 'mock_url'
       })
@@ -394,16 +482,50 @@ export async function mockProcessReceipt(storeName: string, totalAmount: number,
 
     if (receiptError) throw receiptError;
 
-    // 2. Add inventory & line items
-    for (const item of newItems) {
-      await addInventoryItem(item.name, item.category, item.quantity, item.unit);
-      
-      // Assume product was created/found by addInventoryItem. We skip detailed line_items insertion for brevity in the mock.
+    for (const item of (newItems || []).slice(0, 50)) {
+      await addInventoryItem(
+        item.canonical_name || item.name || 'Unknown',
+        item.category || 'Other',
+        item.quantity || 1,
+        item.unit || 'unit'
+      );
     }
 
     return { success: true };
   } catch (error: any) {
     console.error('Process receipt error:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+// ===========================================================
+// Data Export
+// ===========================================================
+
+export async function exportFamilyData() {
+  const familyId = await getSession();
+  if (!familyId) return { success: false, error: 'Not authenticated' };
+
+  try {
+    const [inventory, list, profiles, budget] = await Promise.all([
+      supabase.from('pantry_inventory').select('*').eq('family_id', familyId),
+      supabase.from('list_items').select('*').eq('family_id', familyId),
+      supabase.from('profiles').select('*').eq('family_id', familyId),
+      supabase.from('budgets').select('*').eq('family_id', familyId).single(),
+    ]);
+
+    return {
+      success: true,
+      data: {
+        exportDate: new Date().toISOString(),
+        inventory: inventory.data || [],
+        shoppingList: list.data || [],
+        profiles: profiles.data || [],
+        budget: budget.data || null,
+      }
+    };
+  } catch (error: any) {
+    console.error('Export error:', error);
     return { success: false, error: error.message };
   }
 }

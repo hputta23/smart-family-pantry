@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { getInventory, addListItem } from '@/app/actions';
+import { useToast } from '@/app/components/Toast';
 
 export default function PantryInventory() {
   const [inventory, setInventory] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { showToast } = useToast();
 
   const fetchInventory = async () => {
     setIsLoading(true);
@@ -21,9 +23,8 @@ export default function PantryInventory() {
   }, []);
 
   const handleAddToList = async (itemName: string) => {
-    // Add to shopping list in DB
     await addListItem(itemName, 'Any Store');
-    alert(`Added ${itemName} to shopping list!`);
+    showToast(`Added ${itemName} to shopping list!`);
   };
 
   // Group inventory by category
