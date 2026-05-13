@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-surface-container-low: #f3f3f3;
+  --color-inverse-primary: #66d6e7;
+  --color-primary: #006671;
+  --color-primary-container: #00818f;
+  --color-primary-fixed: #97f0ff;
+  --color-on-tertiary-fixed-variant: #41484a;
+  --color-on-tertiary-container: #f9fdff;
+  --color-outline-variant: #bcc9cb;
+  --color-secondary: #845400;
+  --color-on-tertiary-fixed: #161d1f;
+  --color-on-secondary-fixed-variant: #643f00;
+  --color-error-container: #ffdad6;
+  --color-surface-tint: #006874;
+  --color-secondary-fixed: #ffddb6;
+  --color-on-primary-container: #f7feff;
+  --color-tertiary-fixed-dim: #c1c8ca;
+  --color-on-tertiary: #ffffff;
+  --color-on-primary-fixed-variant: #004f58;
+  --color-inverse-on-surface: #f0f1f1;
+  --color-on-error: #ffffff;
+  --color-secondary-container: #ffb143;
+  --color-on-secondary: #ffffff;
+  --color-outline: #6d797b;
+  --color-background: #f9f9f9;
+  --color-tertiary-container: #6f7678;
+  --color-primary-fixed-dim: #66d6e7;
+  --color-on-secondary-container: #6f4600;
+  --color-on-background: #1a1c1c;
+  --color-secondary-fixed-dim: #ffb95b;
+  --color-surface-bright: #f9f9f9;
+  --color-surface-container-highest: #e2e2e2;
+  --color-tertiary: #565d5f;
+  --color-inverse-surface: #2f3131;
+  --color-surface-container: #eeeeee;
+  --color-tertiary-fixed: #dde4e6;
+  --color-surface: #f9f9f9;
+  --color-on-secondary-fixed: #2a1800;
+  --color-on-error-container: #93000a;
+  --color-error: #ba1a1a;
+  --color-surface-container-high: #e8e8e8;
+  --color-surface-dim: #dadada;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-variant: #e2e2e2;
+  --color-on-primary-fixed: #001f24;
+  --color-on-surface-variant: #3d494b;
+  --color-on-surface: #1a1c1c;
+  --color-on-primary: #ffffff;
+
+  --spacing-stack-md: 16px;
+  --spacing-stack-lg: 32px;
+  --spacing-gutter: 16px;
+  --spacing-stack-sm: 8px;
+  --spacing-container-padding: 24px;
+  --spacing-unit: 8px;
+
+  --font-headline-lg: 'Be Vietnam Pro', sans-serif;
+  --font-body-lg: 'Work Sans', sans-serif;
+  --font-headline-xl: 'Be Vietnam Pro', sans-serif;
+  --font-headline-lg-mobile: 'Be Vietnam Pro', sans-serif;
+  --font-body-md: 'Work Sans', sans-serif;
+  --font-label-sm: 'Work Sans', sans-serif;
+  --font-headline-md: 'Be Vietnam Pro', sans-serif;
+  --font-label-bold: 'Work Sans', sans-serif;
+
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--font-weight: 600;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+
+  --text-headline-xl: 40px;
+  --text-headline-xl--line-height: 48px;
+  --text-headline-xl--font-weight: 700;
+  --text-headline-xl--letter-spacing: -0.02em;
+
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 34px;
+  --text-headline-lg-mobile--font-weight: 600;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 16px;
+  --text-label-sm--font-weight: 500;
+
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--font-weight: 600;
+
+  --text-label-bold: 14px;
+  --text-label-bold--line-height: 20px;
+  --text-label-bold--font-weight: 600;
+  --text-label-bold--letter-spacing: 0.01em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.board-shadow {
+    box-shadow: 0px 4px 12px rgba(45, 52, 54, 0.05);
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.bg-dot-pattern {
+    background-image: radial-gradient(#bcc9cb 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
 }

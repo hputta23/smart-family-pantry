@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Family Pantry - Household Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#dde4e6",
+                        "surface-container": "#eeeeee",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#004f58",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary": "#565d5f",
+                        "outline": "#6d797b",
+                        "surface-container-highest": "#e2e2e2",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#bcc9cb",
+                        "primary": "#006671",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#66d6e7",
+                        "surface-container-low": "#f3f3f3",
+                        "primary-fixed-dim": "#66d6e7",
+                        "on-background": "#1a1c1c",
+                        "primary-container": "#00818f",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#845400",
+                        "on-tertiary-fixed": "#161d1f",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f9f9f9",
+                        "secondary-fixed-dim": "#ffb95b",
+                        "secondary-fixed": "#ffddb6",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-container": "#f9fdff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#97f0ff",
+                        "on-surface-variant": "#3d494b",
+                        "on-primary-container": "#f7feff",
+                        "surface": "#f9f9f9",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#001f24",
+                        "on-secondary-fixed-variant": "#643f00",
+                        "tertiary-container": "#6f7678",
+                        "on-tertiary-fixed-variant": "#41484a",
+                        "tertiary-fixed-dim": "#c1c8ca",
+                        "surface-variant": "#e2e2e2",
+                        "surface-tint": "#006874",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-container": "#ffb143",
+                        "on-secondary-container": "#6f4600",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#2a1800",
+                        "inverse-surface": "#2f3131"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "container-padding": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Work Sans"],
+                        "label-bold": ["Work Sans"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "body-md": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "headline-xl": ["Be Vietnam Pro"],
+                        "headline-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FAFAFA;
+        }
+        .kitchen-board-shadow {
+            box-shadow: 0px 4px 12px rgba(45, 52, 54, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+<!-- Top AppBar Navigation (Suppressed Navigation logic: Rendered for identification but minimal) -->
+<header class="bg-background w-full top-0 z-50">
+<div class="flex justify-between items-center px-container-padding py-4 max-w-7xl mx-auto">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Smart Family Pantry</h1>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity cursor-pointer" data-icon="notifications">notifications</span>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-outline-variant">
+<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYjFVm7ba7qw1CTCrOjbIQUElKevEYao7pWqz0vi2oSHszCtTS4G_tyq-cgE6DeLzBeGmyCQ4OP7ymo6hvSwtskyHoEtTrLmnjt9f8AFbL4r0Gq0gaZDdntkejc_6PJp65RebQD8JEjtIrw8T8O2iroZXBOCNKPqJdZgRhUj5zHhaqy8SZwKMVmMv3ab-UvCpM3ZtnX8Wkd9YOq57R-oYPovZOIWaN6CUl0GeBt75Z7y_L1jNj-gN3-82UtEe4E6dphoQwKRmrAfna"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-gutter py-stack-lg min-h-[calc(100vh-140px)] flex flex-col justify-center">
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mb-stack-lg overflow-hidden max-w-md mx-auto">
+<div class="bg-primary h-full w-1/4 rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-stack-lg">
+<!-- Left Side: Header & Context -->
+<div class="md:col-span-5 flex flex-col justify-center">
+<div class="inline-flex items-center gap-2 mb-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-bold text-label-sm">Step 1 of 4</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-on-background mb-4 leading-tight">Who's in your household?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">Tell us a bit about your family. This helps us calculate portion sizes and nutrient needs for your grocery lists.</p>
+<div class="hidden md:block rounded-xl overflow-hidden kitchen-board-shadow border border-outline-variant">
+<img class="w-full h-64 object-cover" data-alt="A warm, brightly lit modern kitchen with clean white countertops and light wooden accents. A family cookbook sits open on a ceramic stand next to a bowl of fresh seasonal fruits. The atmosphere is nurturing and organized, reflecting a calm domestic light-mode aesthetic with soft natural morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0gj-e1JDXmnv4WxG7QhHz8HWfmQ65HAzMmgja3k4XRMalhBnKEm_G0h3QL0h1OCdVVSzVmMbkOy1TnIDqInr-sQqT7Ym0bKtDb-qvyN93oC_iCzkZVAl9vjhJQyl1IhrMR5MO94XNL3__Zahe_9tecEyuauPrzgr39ii-uwXLJLeEoKHDYrMbqWGvWBQKcoqF0kCNPb8aa27o4SrKqjmhZtFuOsZfUjAaB8FcyGvXYGKQJAjzxPGRwv7FhX8JyeKG5qRz2iug4KeQ"/>
+</div>
+</div>
+<!-- Right Side: Interaction Board -->
+<div class="md:col-span-7">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8 kitchen-board-shadow">
+<!-- Member Entry Row 1 (User Self) -->
+<div class="mb-stack-lg">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-bold text-label-bold text-primary uppercase tracking-wider">Member 1 (You)</span>
+</div>
+<div class="space-y-6">
+<!-- Age Selection Chips -->
+<div>
+<label class="block font-label-bold text-label-bold text-on-surface-variant mb-3">Age Range</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full border-2 border-primary bg-primary text-on-primary font-label-bold text-label-bold transition-all">Adult (18-64)</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary text-on-surface-variant font-label-bold text-label-bold transition-all">Senior (65+)</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary text-on-surface-variant font-label-bold text-label-bold transition-all">Teen (13-17)</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary text-on-surface-variant font-label-bold text-label-bold transition-all">Child (3-12)</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary text-on-surface-variant font-label-bold text-label-bold transition-all">Infant (0-2)</button>
+</div>
+</div>
+<!-- Sex Selection Chips -->
+<div>
+<label class="block font-label-bold text-label-bold text-on-surface-variant mb-3">Sex</label>
+<div class="flex gap-2">
+<button class="flex-1 px-4 py-2 rounded-lg border-2 border-primary bg-primary-container text-on-primary-container font-label-bold text-label-bold transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="female">female</span> Female
+                                    </button>
+<button class="flex-1 px-4 py-2 rounded-lg border border-outline-variant hover:border-primary text-on-surface-variant font-label-bold text-label-bold transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="male">male</span> Male
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div class="h-px bg-outline-variant w-full my-stack-lg"></div>
+<!-- Member Entry Row 2 (Template for Add) -->
+<div class="mb-stack-lg opacity-60">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Member 2</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<button class="w-full p-4 rounded-xl border border-dashed border-outline text-on-surface-variant flex items-center justify-center gap-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="font-label-bold">Add Household Member</span>
+</button>
+<div class="hidden sm:block"></div>
+</div>
+</div>
+<!-- Prediction Module Hint -->
+<div class="bg-[#FFF9F0] border border-[#FFB142]/30 p-4 rounded-xl mb-stack-lg">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="lightbulb">lightbulb</span>
+<p class="text-label-bold text-on-secondary-fixed-variant leading-tight">
+                                Knowing your household size helps our Smart Inventory predict when you'll run out of staples like milk or bread.
+                            </p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-3 pt-4">
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-headline-md text-headline-md shadow-md active:scale-95 transition-transform duration-150">
+                            Next
+                        </button>
+<button class="w-full py-2 text-on-surface-variant font-label-bold text-label-bold hover:text-primary transition-colors">
+                            Skip for now
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation suppressed per Destination Rule as this is a focused Journey/Transactional Wizard -->
+</body></html>

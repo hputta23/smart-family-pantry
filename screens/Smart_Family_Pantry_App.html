@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Family Pantry - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f3f3f3",
+                    "inverse-primary": "#66d6e7",
+                    "primary": "#006671",
+                    "primary-container": "#00818f",
+                    "primary-fixed": "#97f0ff",
+                    "on-tertiary-fixed-variant": "#41484a",
+                    "on-tertiary-container": "#f9fdff",
+                    "outline-variant": "#bcc9cb",
+                    "secondary": "#845400",
+                    "on-tertiary-fixed": "#161d1f",
+                    "on-secondary-fixed-variant": "#643f00",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#006874",
+                    "secondary-fixed": "#ffddb6",
+                    "on-primary-container": "#f7feff",
+                    "tertiary-fixed-dim": "#c1c8ca",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#004f58",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#ffb143",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6d797b",
+                    "background": "#f9f9f9",
+                    "tertiary-container": "#6f7678",
+                    "primary-fixed-dim": "#66d6e7",
+                    "on-secondary-container": "#6f4600",
+                    "on-background": "#1a1c1c",
+                    "secondary-fixed-dim": "#ffb95b",
+                    "surface-bright": "#f9f9f9",
+                    "surface-container-highest": "#e2e2e2",
+                    "tertiary": "#565d5f",
+                    "inverse-surface": "#2f3131",
+                    "surface-container": "#eeeeee",
+                    "tertiary-fixed": "#dde4e6",
+                    "surface": "#f9f9f9",
+                    "on-secondary-fixed": "#2a1800",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-dim": "#dadada",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-fixed": "#001f24",
+                    "on-surface-variant": "#3d494b",
+                    "on-surface": "#1a1c1c",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "gutter": "16px",
+                    "stack-sm": "8px",
+                    "container-padding": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Be Vietnam Pro"],
+                    "body-lg": ["Work Sans"],
+                    "headline-xl": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Be Vietnam Pro"],
+                    "body-md": ["Work Sans"],
+                    "label-sm": ["Work Sans"],
+                    "headline-md": ["Be Vietnam Pro"],
+                    "label-bold": ["Work Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .board-shadow {
+            box-shadow: 0px 4px 12px rgba(45, 52, 54, 0.05);
+        }
+        .bg-dot-pattern {
+            background-image: radial-gradient(#bcc9cb 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen flex flex-col font-body-md text-on-background bg-dot-pattern">
+<main class="flex-grow flex items-center justify-center px-container-padding py-stack-lg">
+<div class="max-w-md w-full">
+<!-- Brand Anchor Section -->
+<div class="text-center mb-stack-lg">
+<div class="inline-flex items-center justify-center p-4 bg-primary-container rounded-xl mb-4 board-shadow">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="pantry" style="font-variation-settings: 'FILL' 1;">grocery</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-2">Smart Family Pantry</h1>
+<p class="font-body-md text-on-surface-variant">Your household's digital kitchen board.</p>
+</div>
+<!-- Login Card (The Board) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 board-shadow space-y-stack-md">
+<form class="space-y-stack-md">
+<!-- Email Field -->
+<div class="space-y-stack-sm">
+<label class="font-label-bold text-label-bold text-on-surface-variant block" for="email">Email Address</label>
+<div class="relative">
+<input class="w-full bg-white border-2 border-outline-variant focus:border-primary focus:ring-0 rounded-lg px-4 py-3 text-body-md transition-all outline-none" id="email" placeholder="e.g. mom@kitchen.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-stack-sm">
+<div class="flex justify-between items-center">
+<label class="font-label-bold text-label-bold text-on-surface-variant" for="password">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline transition-all" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<input class="w-full bg-white border-2 border-outline-variant focus:border-primary focus:ring-0 rounded-lg px-4 py-3 text-body-md transition-all outline-none" id="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Inline Validation Simulation (Subtle Note) -->
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+<span class="font-label-sm text-label-sm">Secure connection active</span>
+</div>
+<!-- Actions -->
+<div class="pt-2 space-y-3">
+<button class="w-full bg-primary text-on-primary font-label-bold text-body-md py-4 rounded-lg board-shadow hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+<span>Log In</span>
+<span class="material-symbols-outlined text-lg" data-icon="login">login</span>
+</button>
+<button class="w-full bg-surface-container-high text-primary border border-primary font-label-bold text-body-md py-4 rounded-lg hover:bg-primary hover:text-on-primary transition-all active:scale-[0.98]" type="button">
+                            Start a Family Account
+                        </button>
+</div>
+</form>
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-surface-container-lowest px-4 font-label-sm text-on-surface-variant">OR</span>
+</div>
+</div>
+<!-- Join a Family Section (Code Input) -->
+<div class="bg-secondary-container bg-opacity-10 border border-secondary border-dashed rounded-lg p-6 space-y-4">
+<div class="text-center">
+<h3 class="font-label-bold text-label-bold text-on-secondary-container">Join an existing Family</h3>
+<p class="text-label-sm text-on-surface-variant mt-1">Enter the 6-character pantry code</p>
+</div>
+<div class="flex justify-center gap-2">
+<input class="w-10 h-12 border-2 border-outline-variant rounded-lg text-center font-headline-md text-primary bg-white focus:border-secondary focus:ring-0 transition-all uppercase" maxlength="1" type="text"/>
+<input class="w-10 h-12 border-2 border-outline-variant rounded-lg text-center font-headline-md text-primary bg-white focus:border-secondary focus:ring-0 transition-all uppercase" maxlength="1" type="text"/>
+<input class="w-10 h-12 border-2 border-outline-variant rounded-lg text-center font-headline-md text-primary bg-white focus:border-secondary focus:ring-0 transition-all uppercase" maxlength="1" type="text"/>
+<div class="flex items-center text-outline-variant">-</div>
+<input class="w-10 h-12 border-2 border-outline-variant rounded-lg text-center font-headline-md text-primary bg-white focus:border-secondary focus:ring-0 transition-all uppercase" maxlength="1" type="text"/>
+<input class="w-10 h-12 border-2 border-outline-variant rounded-lg text-center font-headline-md text-primary bg-white focus:border-secondary focus:ring-0 transition-all uppercase" maxlength="1" type="text"/>
+<input class="w-10 h-12 border-2 border-outline-variant rounded-lg text-center font-headline-md text-primary bg-white focus:border-secondary focus:ring-0 transition-all uppercase" maxlength="1" type="text"/>
+</div>
+<button class="w-full font-label-bold text-label-bold text-secondary hover:text-on-secondary-container transition-all py-2">
+                        Verify Code &amp; Join
+                    </button>
+</div>
+</div>
+<!-- Footer Graphic / Contextual Image -->
+<div class="mt-stack-lg rounded-xl overflow-hidden border border-outline-variant board-shadow aspect-video relative group">
+<img alt="Organized Pantry" class="w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-700" data-alt="A professionally organized modern kitchen pantry with labeled glass jars and woven baskets on white wooden shelves. The lighting is soft and warm, reflecting a bright morning sun through a nearby window. The aesthetic is minimalist and high-fidelity, matching a calm domestic atmosphere with a palette of whites, light woods, and subtle teal accents. The composition feels serene, clean, and extremely orderly." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADZDTDNec6DKXWtUu1-eyzfgNlpBlW-qLMhYqSMRXCs8bmELVY1GP_PAiG_Br_dU1GfZJ6L8REnVgofMPfTJdsa09Kdvhi_EYIchjVfgV4BFN4MeEVlz5XVpyfqorHipCXxL6Ds9NRo7Rq-d6m3ZSN9dflIbZDyVwUGDrSZpWbfIczfzY4uBkd1ZKt8SHMgymTtWB0QhGqU1ZHnGdoUQP5Ff0O4VqOWQgMFX4KFrq0b7T3k3fhZw3e2GXrJb_aCRudQWcv6sdBFeiG"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end p-6">
+<p class="font-label-sm text-on-surface italic">"A place for everything, and everything in its place."</p>
+</div>
+</div>
+<!-- Copyright/Links -->
+<footer class="mt-stack-md flex justify-center gap-4">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary" href="#">Privacy Policy</a>
+<span class="text-outline-variant">•</span>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary" href="#">Terms of Service</a>
+<span class="text-outline-variant">•</span>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary" href="#">Help Center</a>
+</footer>
+</div>
+</main>
+</body></html>

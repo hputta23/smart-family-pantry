@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings - Smart Family Pantry</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f3f3f3",
+                    "inverse-primary": "#66d6e7",
+                    "primary": "#006671",
+                    "primary-container": "#00818f",
+                    "primary-fixed": "#97f0ff",
+                    "on-tertiary-fixed-variant": "#41484a",
+                    "on-tertiary-container": "#f9fdff",
+                    "outline-variant": "#bcc9cb",
+                    "secondary": "#845400",
+                    "on-tertiary-fixed": "#161d1f",
+                    "on-secondary-fixed-variant": "#643f00",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#006874",
+                    "secondary-fixed": "#ffddb6",
+                    "on-primary-container": "#f7feff",
+                    "tertiary-fixed-dim": "#c1c8ca",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#004f58",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#ffb143",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6d797b",
+                    "background": "#f9f9f9",
+                    "tertiary-container": "#6f7678",
+                    "primary-fixed-dim": "#66d6e7",
+                    "on-secondary-container": "#6f4600",
+                    "on-background": "#1a1c1c",
+                    "secondary-fixed-dim": "#ffb95b",
+                    "surface-bright": "#f9f9f9",
+                    "surface-container-highest": "#e2e2e2",
+                    "tertiary": "#565d5f",
+                    "inverse-surface": "#2f3131",
+                    "surface-container": "#eeeeee",
+                    "tertiary-fixed": "#dde4e6",
+                    "surface": "#f9f9f9",
+                    "on-secondary-fixed": "#2a1800",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-dim": "#dadada",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-fixed": "#001f24",
+                    "on-surface-variant": "#3d494b",
+                    "on-surface": "#1a1c1c",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "gutter": "16px",
+                    "stack-sm": "8px",
+                    "container-padding": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Be Vietnam Pro"],
+                    "body-lg": ["Work Sans"],
+                    "headline-xl": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Be Vietnam Pro"],
+                    "body-md": ["Work Sans"],
+                    "label-sm": ["Work Sans"],
+                    "headline-md": ["Be Vietnam Pro"],
+                    "label-bold": ["Work Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kitchen-board-shadow {
+            box-shadow: 0px 4px 12px rgba(45, 52, 54, 0.05);
+        }
+        body {
+            background-color: #FAFAFA;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background py-4 px-container-padding">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<div class="flex items-center gap-4">
+<img alt="User" class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container-high" data-alt="A clean, minimalist profile avatar placeholder for a high-end pantry management application. The style is modern and domestic, featuring soft neutral tones and professional lighting against a warm off-white background. The aesthetic is clean, organized, and welcoming, fitting perfectly into a modern kitchen digital ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvAQDAxCQS1XkKFEAb42zT_yzeIQoudY5JrYy0W3MFiBEcfeRGlMFUd5SiEYaQVQBKSc3jm76AQaBRoSQGac0JZmcFxddilmSlkpCQjJ7AXK8ZvcA79BnnCcMZNv2XYYi5S9yqGPKcNULRqH34ADGlrLcjTaoLNHta1cnOqhdzoS48H4kNycbayPb075IVlONK5iZC5qWD_24Pj-_658WthNJrOp9IWi7UrjhXNHy53wMsE5J5QMjWXHFwMh7qRIN18ks6tCXvgsOu"/>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Smart Family Pantry</h1>
+</div>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity active:scale-95 duration-150">notifications</button>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="max-w-4xl mx-auto pt-24 pb-32 px-container-padding space-y-stack-lg">
+<!-- Page Headline -->
+<div class="space-y-stack-sm">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Settings</h2>
+<p class="text-on-surface-variant font-body-md">Manage your domestic hub and family preferences.</p>
+</div>
+<!-- Settings Groups -->
+<div class="space-y-gutter">
+<!-- 1. Family -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden kitchen-board-shadow">
+<div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">family_history</span>
+<h3 class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface-variant">Family</h3>
+</div>
+<div class="divide-y divide-outline-variant">
+<div class="p-6 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div>
+<p class="font-label-bold text-on-surface">Manage Profiles</p>
+<p class="text-label-sm text-on-surface-variant">4 active members: Sarah, Mark, +2</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div>
+<p class="font-label-bold text-on-surface">Family Code</p>
+<p class="text-label-sm font-mono text-primary bg-primary-fixed/30 px-2 py-0.5 rounded">PANTRY-8821-K</p>
+</div>
+<button class="text-primary font-label-bold hover:underline">Copy Link</button>
+</div>
+</div>
+</section>
+<!-- 2. Stores -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden kitchen-board-shadow">
+<div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">store</span>
+<h3 class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface-variant">Stores</h3>
+</div>
+<div class="divide-y divide-outline-variant">
+<div class="p-6 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">shopping_cart</span>
+</div>
+<div>
+<p class="font-label-bold text-on-surface">Preferred Stores</p>
+<p class="text-label-sm text-on-surface-variant">Whole Foods, Trader Joe's</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">settings</span>
+</div>
+<div class="p-6 bg-surface-container-lowest">
+<p class="font-label-bold text-on-surface mb-2">Home Location</p>
+<div class="w-full h-32 rounded-lg bg-surface-container-high relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-50" data-alt="A clean, minimalist map representation of a residential neighborhood in San Francisco. The map uses a soft, light-mode palette with teal and slate accents for landmarks. The style is professional and domestic, avoiding high-contrast GPS visuals in favor of a calm, organized kitchen board aesthetic." data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOXBffr6XWpt2_vtKaAuRzYLQUa7PY9zPh-icmXbF4zjNFKGL-XVkJsfDtOJncLHlFAWIdiicCzLhB99fSKotcBQrDOvwrkYsTpRNgGONx_Vb5y0Uoy8lzFy6dKUNIaF2FIDwKsIIcilHQYoAnEJjArM4PYShuKM9l9LvFLS-LeSTeRZ8TnJoK2v9jAkgGtA4pmoas8kR4VZBmCuS_Q_Aq9NDniAPvVQEnd10z8dQXmjrwFT23y2PDsUWH9-nNNW5D9Q9HgvmWboXC"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Health Nudges -->
+<section class="bg-primary-container/5 border border-primary/20 rounded-xl overflow-hidden kitchen-board-shadow">
+<div class="px-6 py-4 bg-primary-container/10 border-b border-primary/10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+<h3 class="font-label-bold text-label-bold uppercase tracking-wider text-primary">Health Nudges</h3>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-6 space-y-4">
+<p class="text-body-md text-on-surface-variant italic">AI-suggested healthier alternatives based on your shopping patterns.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container-lowest border border-outline-variant rounded-full text-label-sm text-on-surface">Low Sugar Alerts</span>
+<span class="px-3 py-1 bg-surface-container-lowest border border-outline-variant rounded-full text-label-sm text-on-surface">Whole Grain Swaps</span>
+<span class="px-3 py-1 bg-primary text-white rounded-full text-label-sm flex items-center gap-1">
+                            Fresh Produce Focus <span class="material-symbols-outlined text-sm">check</span>
+</span>
+</div>
+</div>
+</section>
+<!-- 4. Notifications -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden kitchen-board-shadow">
+<div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+<h3 class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface-variant">Notifications</h3>
+</div>
+<div class="divide-y divide-outline-variant">
+<div class="p-6 flex items-center justify-between">
+<div>
+<p class="font-label-bold text-on-surface">Restock Predictions</p>
+<p class="text-label-sm text-on-surface-variant">Get notified when staples are running low.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div>
+<p class="font-label-bold text-on-surface">Sales &amp; Deals</p>
+<p class="text-label-sm text-on-surface-variant">Price drops at your preferred stores.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary-container"></div>
+</label>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div>
+<p class="font-label-bold text-on-surface">Budget Alerts</p>
+<p class="text-label-sm text-on-surface-variant">Weekly spending milestone warnings.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- 5. Privacy -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden kitchen-board-shadow">
+<div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">security</span>
+<h3 class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface-variant">Privacy</h3>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div>
+<p class="font-label-bold text-on-surface">Data Sharing</p>
+<p class="text-label-sm text-on-surface-variant pr-8">Anonymized pantry data helps improve community predictions and price tracking.</p>
+</div>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant text-label-bold rounded-lg hover:bg-outline-variant transition-colors">Opt-out</button>
+</div>
+</section>
+<!-- 6. Data -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden kitchen-board-shadow">
+<div class="px-6 py-4 bg-surface-container-low border-b border-outline-variant flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">database</span>
+<h3 class="font-label-bold text-label-bold uppercase tracking-wider text-on-surface-variant">Data</h3>
+</div>
+<div class="divide-y divide-outline-variant">
+<div class="p-6 flex items-center justify-between hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline group-hover:text-primary">file_export</span>
+<p class="font-label-bold text-on-surface">Export JSON</p>
+</div>
+<span class="material-symbols-outlined text-outline">download</span>
+</div>
+<div class="p-6 flex items-center justify-between hover:bg-error-container/20 cursor-pointer transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-error">delete_forever</span>
+<p class="font-label-bold text-error">Delete Account</p>
+</div>
+<p class="text-label-sm text-error/60 italic">Permanent action</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Logout Section -->
+<div class="flex justify-center pt-8">
+<button class="flex items-center gap-2 px-8 py-3 border-2 border-primary text-primary font-label-bold rounded-full hover:bg-primary hover:text-white transition-all active:scale-95">
+<span class="material-symbols-outlined">logout</span>
+                Logout from Device
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-lowest border-t border-outline-variant shadow-sm">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all">
+<span class="material-symbols-outlined">format_list_bulleted</span>
+<span class="font-label-sm text-label-sm">List</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-sm text-label-sm">Pantry</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-sm text-label-sm">Budget</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+</body></html>

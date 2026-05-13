@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Household Setup Wizard - Step 3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#dde4e6",
+                        "surface-container": "#eeeeee",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#004f58",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary": "#565d5f",
+                        "outline": "#6d797b",
+                        "surface-container-highest": "#e2e2e2",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#bcc9cb",
+                        "primary": "#006671",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#66d6e7",
+                        "surface-container-low": "#f3f3f3",
+                        "primary-fixed-dim": "#66d6e7",
+                        "on-background": "#1a1c1c",
+                        "primary-container": "#00818f",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#845400",
+                        "on-tertiary-fixed": "#161d1f",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f9f9f9",
+                        "secondary-fixed-dim": "#ffb95b",
+                        "secondary-fixed": "#ffddb6",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-container": "#f9fdff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#97f0ff",
+                        "on-surface-variant": "#3d494b",
+                        "on-primary-container": "#f7feff",
+                        "surface": "#f9f9f9",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#001f24",
+                        "on-secondary-fixed-variant": "#643f00",
+                        "tertiary-container": "#6f7678",
+                        "on-tertiary-fixed-variant": "#41484a",
+                        "tertiary-fixed-dim": "#c1c8ca",
+                        "surface-variant": "#e2e2e2",
+                        "surface-tint": "#006874",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-container": "#ffb143",
+                        "on-secondary-container": "#6f4600",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#2a1800",
+                        "inverse-surface": "#2f3131"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "container-padding": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Work Sans"],
+                        "label-bold": ["Work Sans"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "body-md": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "headline-xl": ["Be Vietnam Pro"],
+                        "headline-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #006671;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            box-shadow: 0px 4px 12px rgba(45, 52, 54, 0.15);
+        }
+        .board-card {
+            box-shadow: 0px 4px 12px rgba(45, 52, 54, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-md flex flex-col">
+<header class="w-full top-0 bg-background dark:bg-background z-50">
+<div class="flex justify-between items-center px-container-padding py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="pantry">grocery</span>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Smart Family Pantry</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User" class="w-full h-full object-cover" data-alt="A professional headshot of a friendly-looking middle-aged woman with a warm smile, set against a soft-focus interior domestic background. The lighting is natural and bright, reflecting a light-mode aesthetic. Her appearance is organized and dependable, fitting the brand persona of a hyper-organized but nurturing home manager." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6AqQF76t56mtTyIQ_ZfUnkGlBpVwiInWa-K-dhh3j7W2iawGGyEUigv2SGJVf55FNUToOzYIjmlMMSbVvmFsXBxE2CfTFPVnoWOuaVpghZNUGR30Gc5HgWityI1-Oz9C9J5C4kwRSOwNGxSDw2mV4KM7_gAs_gXMDyTwN-TgQEiC9Kn9FlwdTqhYs5BUFEcALJpznH3IH9pHKAS7eKIZDe6JPBX8nHAiSKwd49yXcDHz3i-aQyT9V2QF7RRYUcNdBMsNcz0bohTOR"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-gutter py-stack-lg max-w-4xl mx-auto w-full">
+<div class="w-full mb-stack-lg">
+<div class="flex justify-between items-end mb-2">
+<div>
+<span class="text-primary font-label-bold text-label-bold uppercase tracking-wider">Step 3 of 3</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-1">Set Your Budget</h2>
+</div>
+<div class="hidden md:flex gap-2">
+<div class="w-8 h-2 rounded-full bg-primary"></div>
+<div class="w-8 h-2 rounded-full bg-primary"></div>
+<div class="w-12 h-2 rounded-full bg-primary"></div>
+</div>
+</div>
+<p class="text-on-surface-variant text-body-lg">Control your monthly spending with a smart grocery limit tailored to your family's needs.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 w-full">
+<div class="md:col-span-8">
+<div class="bg-surface-container-lowest board-card border border-outline-variant rounded-xl p-8">
+<div class="flex flex-col items-center mb-10">
+<span class="text-on-surface-variant font-label-bold text-label-bold mb-2">MONTHLY TARGET</span>
+<div class="flex items-baseline gap-1">
+<span class="text-headline-md font-bold text-primary">$</span>
+<span class="text-6xl font-bold text-on-surface tracking-tighter">850</span>
+</div>
+</div>
+<div class="relative w-full mb-12">
+<input class="w-full h-2 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" max="2500" min="200" step="50" type="range" value="850"/>
+<div class="flex justify-between mt-4 text-label-sm text-on-surface-variant font-label-sm">
+<span>$200</span>
+<span class="hidden sm:block">Frugal</span>
+<span class="text-primary font-bold">Recommended for 4 people</span>
+<span class="hidden sm:block">Premium</span>
+<span>$2,500+</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<button class="flex flex-col items-start p-4 border-2 border-outline-variant rounded-xl hover:border-primary transition-all text-left bg-surface-container-low group">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-1">Thrifty</span>
+<span class="text-body-md font-bold text-on-surface">$600</span>
+<p class="text-[10px] text-on-surface-variant mt-2">Essential staples and basic ingredients only.</p>
+</button>
+<button class="flex flex-col items-start p-4 border-2 border-primary rounded-xl transition-all text-left bg-primary-container group relative">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-on-secondary text-[10px] font-bold px-2 py-0.5 rounded-full">MOST POPULAR</div>
+<span class="text-label-sm font-label-sm text-on-primary-container mb-1">Balanced</span>
+<span class="text-body-md font-bold text-on-primary-container">$850</span>
+<p class="text-[10px] text-on-primary-container opacity-80 mt-2">Variety including fresh produce and brand names.</p>
+</button>
+<button class="flex flex-col items-start p-4 border-2 border-outline-variant rounded-xl hover:border-primary transition-all text-left bg-surface-container-low group">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-1">Abundant</span>
+<span class="text-body-md font-bold text-on-surface">$1,200</span>
+<p class="text-[10px] text-on-surface-variant mt-2">Organic options, specialty items, and snacks.</p>
+</button>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-4">
+<div class="bg-[#FFF9F0] border border-secondary-container rounded-xl p-6 board-card">
+<h3 class="font-label-bold text-label-bold text-on-secondary-container flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="lightbulb">lightbulb</span>
+                        SMART PREDICTION
+                    </h3>
+<p class="text-body-md text-on-surface-variant mb-4">Based on your household size of <span class="font-bold">4 people</span>, this budget covers:</p>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+<span class="text-label-bold text-label-bold text-on-surface">Weekly Meal Prep</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+<span class="text-label-bold text-label-bold text-on-surface">Household Supplies</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+<span class="text-label-bold text-label-bold text-on-surface">Snacks &amp; Beverages</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-sm mt-1" data-icon="cancel">cancel</span>
+<span class="text-label-bold text-label-bold text-on-surface-variant line-through">Dine-out / Takeout</span>
+</li>
+</ul>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden board-card mt-auto">
+<img alt="Fresh Groceries" class="w-full h-32 object-cover" data-alt="A beautifully arranged overhead shot of fresh organic groceries including vibrant greens, heirloom tomatoes, and sourdough bread on a clean wooden kitchen countertop. The lighting is soft and domestic, creating a nurturing and hyper-organized mood that reflects a well-maintained home. The color palette is natural with pops of fresh teal and warm amber." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Yht7LM8ttP3icXjAuSxfKkuK2pJmi2bvUqO5nZG4ZSIPUWTFEFSwHS7QZo2zp4iQ9-uy7O2jpUYviGfJstI2IwCRd2SO1CGPRFZmlh4bI05nqlPv3VKkAfBEYzEysAG195iB99XC9sKnm3joUSXh_wtpwORs17XArO2I0ExZhA6tAcl6HeS08dv1aA57IDTZuWw-IjXi56XZMkZF3slk-RhNbrgR9-hE31Opb04ok7fTmL1bhzoWOdEGadEqEZuzh6mmJkENZAXv"/>
+<div class="p-4">
+<p class="text-label-sm font-label-sm text-on-surface-variant italic">"A budget is telling your money where to go instead of wondering where it went."</p>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full flex flex-col sm:flex-row gap-4 mt-12 justify-between items-center">
+<button class="flex items-center gap-2 text-on-surface-variant font-label-bold text-label-bold hover:text-primary transition-colors order-2 sm:order-1">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                Previous Step
+            </button>
+<div class="flex gap-4 w-full sm:w-auto order-1 sm:order-2">
+<button class="flex-1 sm:flex-initial px-8 py-3 bg-primary text-on-primary font-label-bold text-label-bold rounded-xl shadow-sm hover:opacity-90 active:scale-95 transition-all">
+                    Finish Setup
+                </button>
+</div>
+</div>
+</main>
+<footer class="md:hidden">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-lowest dark:bg-surface-container-low border-t border-outline-variant shadow-sm">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all opacity-40">
+<span class="material-symbols-outlined" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span class="font-label-sm text-label-sm">List</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all opacity-40">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-sm text-label-sm">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all opacity-40">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-sm text-label-sm">Pantry</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-sm text-label-sm">Budget</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all opacity-40">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+</footer>
+</body></html>
