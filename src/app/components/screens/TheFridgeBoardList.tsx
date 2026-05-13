@@ -1,11 +1,15 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { getShoppingList, toggleListItem, updateListItemQuantity } from '@/app/actions';
+import { getShoppingList, toggleListItem, updateListItemQuantity, addListItem } from '@/app/actions';
+import { useToast } from '@/app/components/Toast';
 
 export default function TheFridgeBoardList() {
   const [listItems, setListItems] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [newItemName, setNewItemName] = useState('');
+  const [isAddingItem, setIsAddingItem] = useState(false);
+  const { showToast } = useToast();
 
   const fetchList = async () => {
     setIsLoading(true);
@@ -47,6 +51,16 @@ export default function TheFridgeBoardList() {
     return acc;
   }, {} as Record<string, any[]>);
 
+  const handleAddItem = async () => {
+    if (!newItemName.trim()) return;
+    setIsAddingItem(true);
+    await addListItem(newItemName.trim(), 'Any Store');
+    showToast(`Added "${newItemName.trim()}" to list`);
+    setNewItemName('');
+    setIsAddingItem(false);
+    fetchList();
+  };
+
   return (
     <>
       <div>
@@ -69,6 +83,26 @@ export default function TheFridgeBoardList() {
         </header>
 
         <main className="max-w-7xl mx-auto px-container-padding space-y-gutter pb-32">
+          {/* Add Item Form */}
+          <div className="mt-4 flex gap-2">
+            <input
+              type="text"
+              placeholder="Add an item to your list..."
+              value={newItemName}
+              onChange={e => setNewItemName(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleAddItem()}
+              className="flex-1 bg-surface-container-lowest border-2 border-outline-variant focus:border-primary rounded-xl px-4 py-3 outline-none transition-all font-body-md"
+            />
+            <button
+              onClick={handleAddItem}
+              disabled={isAddingItem || !newItemName.trim()}
+              className="bg-primary text-on-primary px-5 py-3 rounded-xl font-label-bold active:scale-95 transition-all disabled:opacity-50 flex items-center gap-2"
+            >
+              <span className="material-symbols-outlined text-[20px]">add</span>
+              Add
+            </button>
+          </div>
+
           {isLoading ? (
             <p className="text-on-surface-variant animate-pulse mt-8">Syncing list...</p>
           ) : listItems.length === 0 ? (

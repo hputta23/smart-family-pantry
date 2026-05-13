@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { getFamilyProfiles, addProfile } from '@/app/actions';
+import { useToast } from '@/app/components/Toast';
 import Link from 'next/link';
 
 export default function ManageProfiles() {
@@ -10,6 +11,7 @@ export default function ManageProfiles() {
   const [isAdding, setIsAdding] = useState(false);
   const [newName, setNewName] = useState('');
   const [newType, setNewType] = useState('Member');
+  const { showToast } = useToast();
 
   const fetchProfiles = async () => {
     setIsLoading(true);
@@ -30,7 +32,17 @@ export default function ManageProfiles() {
     await addProfile(newName, newType);
     setIsAdding(false);
     setNewName('');
+    showToast(`${newName} added to your household!`);
     fetchProfiles();
+  };
+
+  const handleCopyInvite = async () => {
+    try {
+      await navigator.clipboard.writeText('PANTRY-8821-K');
+      showToast('Invite code copied!');
+    } catch {
+      showToast('Failed to copy', 'error');
+    }
   };
 
   return (
@@ -59,7 +71,7 @@ export default function ManageProfiles() {
                 <span className="font-headline-md text-headline-md tracking-widest text-on-surface">PANTRY-8821-K</span>
               </div>
             </div>
-            <button className="z-10 flex items-center justify-center gap-2 bg-secondary text-on-secondary px-6 py-3 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity whitespace-nowrap shadow-sm">
+            <button onClick={handleCopyInvite} className="z-10 flex items-center justify-center gap-2 bg-secondary text-on-secondary px-6 py-3 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity whitespace-nowrap shadow-sm">
               <span className="material-symbols-outlined" style={{fontVariationSettings: '"FILL" 1'}}>content_copy</span>
               Copy Invite Link
             </button>

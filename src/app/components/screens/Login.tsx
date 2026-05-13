@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { loginFamily } from '@/app/actions';
+import { useToast } from '@/app/components/Toast';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -12,6 +13,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { showToast } = useToast();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,7 +125,7 @@ export default function Login() {
           <input className="w-10 h-12 border-2 border-outline-variant rounded-lg text-center font-headline-md text-primary bg-white focus:border-secondary focus:ring-0 transition-all uppercase" maxLength={1} type="text" />
           <input className="w-10 h-12 border-2 border-outline-variant rounded-lg text-center font-headline-md text-primary bg-white focus:border-secondary focus:ring-0 transition-all uppercase" maxLength={1} type="text" />
         </div>
-        <button className="w-full font-label-bold text-label-bold text-secondary hover:text-on-secondary-container transition-all py-2">
+        <button onClick={() => showToast('Family code join coming soon!', 'info')} className="w-full font-label-bold text-label-bold text-secondary hover:text-on-secondary-container transition-all py-2">
           Verify Code &amp; Join
         </button>
       </div>
